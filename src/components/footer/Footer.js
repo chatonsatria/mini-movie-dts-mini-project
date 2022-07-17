@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="inline-flex w-full mb-5 justify-between text-[#808080]">
+    <div className="inline-flex w-full mb-5 px-24 justify-between text-[#808080]">
       {/* first section */}
       <div className="flex flex-col gap-y-4">
         <p>Audio and Subtitles</p>
