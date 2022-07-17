@@ -11,11 +11,9 @@ const MainNavigation = React.lazy(() =>
 const Home = React.lazy(() => import("../movies/home/Home"));
 // movies
 const MoviesSelected = React.lazy(() =>
-  import("../movies/movies/MoviesSelected")
+  import("../movies/home/MoviesSelected")
 );
-const MoviesPlaying = React.lazy(() =>
-  import("../movies/movies/MoviesPlaying")
-);
+const MoviesPlaying = React.lazy(() => import("../movies/home/MoviesPlaying"));
 // profile
 const Profile = React.lazy(() => import("../movies/profile/Profile"));
 // footer
@@ -25,7 +23,7 @@ const IndexRouter = () => {
   return (
     <section className="flex flex-col w-full font-inter justify-between min-h-screen text-white bg-[#141414]">
       {/* main navigation */}
-      <div className="fixed w-full h-24 pt-6 px-8 shadow-md top-0">
+      <div className="fixed z-[202] w-full h-24 pt-6 px-8 shadow-md top-0 bg-[#141414]">
         <div className="flex w-full max-w-7xl mx-auto px-4">
           <React.Suspense fallback={<p>Loading...</p>}>
             <MainNavigation />
@@ -55,7 +53,7 @@ const IndexRouter = () => {
           />
           {/* movies */}
           <Route
-            path="/movies"
+            path="/home/detail/:id"
             element={
               <React.Suspense fallback={<p>Loading ...</p>}>
                 <MoviesSelected />
@@ -63,7 +61,7 @@ const IndexRouter = () => {
             }
           />
           <Route
-            path="/movies/:id"
+            path="/home/watch/:id"
             element={
               <React.Suspense fallback={<p>Loading ...</p>}>
                 <ProtectedRoute>
