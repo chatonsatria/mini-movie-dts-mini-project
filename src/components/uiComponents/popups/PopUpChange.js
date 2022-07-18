@@ -9,9 +9,9 @@ const PopUpLogout = (props) => {
       {/* pop up hapus data */}
       <div className="flex flex-col w-auto max-h-fit p-8 m-auto gap-y-6 text-white bg-[#141414] rounded-lg">
         <div className="flex flex-col gap-y-2">
-          <p className="text-xl font-medium">Confirm Logout</p>
+          <p className="text-xl font-medium">Change Profile Picture</p>
 
-          <p>Are you sure want to logout ?</p>
+          <p>Are you sure want to change your profile ?</p>
         </div>
         <div className="inline-flex w-full justify-end gap-x-4">
           <button
@@ -21,7 +21,7 @@ const PopUpLogout = (props) => {
             Back
           </button>
           <button
-            onClick={props.logout}
+            onClick={props.confirm}
             className="w-auto px-4 h-[40px] font-normal text-base text-center bg-[#E50913] text-white"
           >
             Confirm
