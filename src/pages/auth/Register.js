@@ -67,12 +67,12 @@ const Register = () => {
   return (
     <div className="relative flex flex-col md:flex-row w-full min-h-screen bg-black text-white">
       {isHide && (
-        <div className="flex max-h-screen w-full md:w-3/4">
+        <div className="flex justify-end max-h-screen w-full">
           <img src={Kemal} alt="" className="w-full md:w-3/4 object-cover" />
         </div>
       )}
-      <div className="absolute w-full h-full bg-gradient-to-l from-[#141414] via-[#141414]">
-        <div className="flex w-full h-full justify-center md:justify-end items-center md:pr-36">
+      <div className="absolute w-full h-full bg-gradient-to-r from-[#141414] via-[#141414]">
+        <div className="flex flex-row-reverse w-full h-full justify-center md:justify-end items-center md:pl-36">
           <RegisterFormInput
             submit={(email, password) => handleSubmit(email, password)}
             isNotValid={isFailed}
