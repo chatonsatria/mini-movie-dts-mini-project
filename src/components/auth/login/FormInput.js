@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const FormInput = (props) => {
   const emailRef = useRef();
@@ -22,48 +23,45 @@ const FormInput = (props) => {
 
   return (
     <section>
-      <form
-        onSubmit={submitForm}
-        className="flex flex-col pt-6 pb-3 px-8 w-[370px] h-auto rounded-md bg-[#FFFFFF]"
-      >
+      <form onSubmit={submitForm} className="flex flex-col px-11 md:px-0">
         <div className="flex flex-col gap-y-6">
           {/* input email */}
           <div>
-            <label className="font-normal text-base mb-3">Email</label>
             <input
+              placeholder="EMAIL"
               ref={emailRef}
               onChange={valueChangeHandler}
-              className={`text-base px-4 w-full h-[45px] outline-none border ${
-                props.isNotValid ? "border-[#CB3A31]" : "border-[#B5D4FC]"
+              className={`text-[26px] w-full md:w-[522px] h-[100px] text-white px-4 font-medium bg-transparent outline-none border ${
+                props.isNotValid ? "border-[#CB3A31]" : "border-[#FFFFFF]"
               }`}
               type="text"
             />
           </div>
           {/* input passsword */}
           <div>
-            <label className="font-normal text-base mb-3">Kata Sandi</label>
             <div
-              className={`relative flex text-base font-bold w-full h-[45px] outline-none border ${
-                props.isNotValid ? "border-[#CB3A31]" : "border-[#B5D4FC]"
+              className={`relative flex text-[26px] w-full md:w-[522px] h-[100px] text-white font-medium outline-none border ${
+                props.isNotValid ? "border-[#CB3A31]" : "border-[#FFFFFF]"
               }`}
             >
               <input
+                placeholder="PASSWORD"
                 ref={passwordRef}
                 onChange={valueChangeHandler}
-                className="text-base px-4 w-full outline-none pr-7"
+                className="px-4 w-full outline-none bg-transparent pr-7"
                 type={showSandi ? "text" : "password"}
               />
               {showSandi && (
                 <div
                   onClick={showSandiHandler}
-                  className="absolute right-0 top-2.5 px-3 cursor-pointer"
+                  className="absolute flex items-center right-0 h-full px-3 cursor-pointer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor"
+                    stroke="#FFFFFF"
                     strokeWidth="2"
                   >
                     <path
@@ -82,7 +80,7 @@ const FormInput = (props) => {
               {!showSandi && (
                 <div
                   onClick={showSandiHandler}
-                  className="absolute right-0 top-2.5 px-3 cursor-pointer "
+                  className="absolute flex items-center right-0 h-full px-3 cursor-pointer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -104,41 +102,25 @@ const FormInput = (props) => {
           </div>
         </div>
         {/* login failed message */}
-        <div className="mt-6">
+        <div className="mt-2 text-right">
           {props.isNotValid && (
-            <p className="text-[#CB3A31] text-xs font-normal">
-              Password atau Email salah, silahkan cek kembali
+            <p className="text-[#CB3A31] w-full h-[10px] text-xs font-normal">
+              Inavild Password or Email.
             </p>
           )}
+          {!props.isNotValid && <p className="w-full h-[10px]"></p>}
         </div>
-        {/* remember me dan create account */}
-        <div className="flex flex-row justify-between items-center mt-6">
-          <label className="flex flex-row items-center gap-x-1">
-            <input type="checkbox" className="p-1" />
-            <span className="text-[#757575] text-base font-normal">
-              Ingatkan Saya
-            </span>
-          </label>
-          {/* <Link to="#" className="text-[#757575] text-base font-normal">
-            Belum Punya Akun?
-          </Link> */}
-        </div>
-        {/* button  */}
-        {/* TO DO ubah ke login melalui api */}
-        <div className="text-center mt-6 mb-6">
-          <button className="text-white bg-[#207EF6] font-bold w-full py-[10px] rounded">
-            Log In
+        <div className="text-center mt-6">
+          <button className="text-white bg-[#E50913] font-bold w-full md:w-[522px] h-[100px]">
+            LOGIN
           </button>
         </div>
         {/* end of button */}
-        {/* lupa kata sandi */}
-        {/* <Link
-          to="/lupa-password"
-          className="text-[#CB3A31] font-[500] text-base text-center mt-6"
-        >
-          Lupa Kata Sandi?
-        </Link> */}
-        <div></div>
+        <div className="flex mt-2 justify-end">
+          <Link to="/register" className="text-[#757575] text-base font-normal">
+            Don't have an account?
+          </Link>
+        </div>
       </form>
     </section>
   );
