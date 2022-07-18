@@ -7,8 +7,7 @@ const ContinueWatching = () => {
   return (
     <div className="flex flex-col gap-y-3">
       <p className="font-medium text-2xl px-8">
-        {useremail && <p>{useremail}, Continue Watching</p>}
-        {!useremail && <p>Continue Watching</p>}
+        <p>{useremail}, Continue Watching</p>
       </p>
       {/* list */}
       <div className="relative flex w-full">

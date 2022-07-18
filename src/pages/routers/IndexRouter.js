@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 
 // protected route watch movie
@@ -14,8 +14,6 @@ const MoviesSelected = React.lazy(() =>
   import("../movies/home/MoviesSelected")
 );
 const MoviesPlaying = React.lazy(() => import("../movies/home/MoviesPlaying"));
-// profile
-const Profile = React.lazy(() => import("../movies/profile/Profile"));
 // footer
 const Footer = React.lazy(() => import("../../components/footer/Footer"));
 
@@ -33,15 +31,6 @@ const IndexRouter = () => {
       {/* router view */}
       <div className="flex w-full max-w-7xl mx-auto mt-24 px-4">
         <Routes>
-          {/* navigate route */}
-          <Route
-            path="/"
-            element={
-              <React.Suspense fallback={<p>Loading ...</p>}>
-                <Navigate to="/home" />
-              </React.Suspense>
-            }
-          />
           {/* home */}
           <Route
             path="/home"
@@ -67,15 +56,6 @@ const IndexRouter = () => {
                 <ProtectedRoute>
                   <MoviesPlaying />
                 </ProtectedRoute>
-              </React.Suspense>
-            }
-          />
-          {/* profile */}
-          <Route
-            path="/profile"
-            element={
-              <React.Suspense fallback={<p>Loading ...</p>}>
-                <Profile />
               </React.Suspense>
             }
           />

@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RegisterFormTitle from "../../components/auth/register/FormTitle";
 import RegisterFormInput from "../../components/auth/register/FormInput";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
 
+import Kemal from "../../assets/profile/kemal.png";
+import { AuthContext } from "../../store/auth-context";
+
 const Register = () => {
   const navigate = useNavigate();
+  const { setLogin } = useContext(AuthContext);
   const [isFailed, setIsFailed] = useState(false);
 
+  const authDataHandler = (token, useremail) => {
+    setLogin(token, useremail);
+    localStorage.setItem("token", token);
+    localStorage.setItem("useremail", useremail);
+    setTimeout(() => {
+      navigate("/dts-movies/home");
+    }, 3000);
+  };
+
   const handleSubmit = async (emailData, passwordData) => {
-    console.log("data email", emailData);
-    console.log("data pwd", passwordData);
     const email = emailData;
     const password = passwordData;
 
@@ -21,28 +31,55 @@ const Register = () => {
         email,
         password
       );
-      console.log(user);
-      navigate("/home");
+      authDataHandler(user.accessToken, user.email);
     } catch (error) {
       setIsFailed(true);
     }
   };
 
+  // get screen widht
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  }
+
+  const [isHide, setIsHide] = useState(false);
+
+  useEffect(() => {
+    if (windowSize.innerWidth > 768) {
+      setIsHide(true);
+    } else {
+      setIsHide(false);
+    }
+  }, [windowSize.innerWidth]);
+
   return (
-    <div className="flex w-full min-h-screen">
-      <section className="flex m-auto p-8 border rounded-xl shadow-lg">
-        {/* Register form */}
-        <div className="flex flex-col gap-y-10">
-          {/* title */}
-          <RegisterFormTitle />
-          {/* input form */}
+    <div className="relative flex flex-col md:flex-row w-full min-h-screen bg-black text-white">
+      {isHide && (
+        <div className="flex max-h-screen w-full md:w-3/4">
+          <img src={Kemal} alt="" className="w-full md:w-3/4 object-cover" />
+        </div>
+      )}
+      <div className="absolute w-full h-full bg-gradient-to-l from-[#141414] via-[#141414]">
+        <div className="flex w-full h-full justify-center md:justify-end items-center md:pr-36">
           <RegisterFormInput
             submit={(email, password) => handleSubmit(email, password)}
             isNotValid={isFailed}
             changeValue={() => setIsFailed(false)}
           />
         </div>
-      </section>
+      </div>
     </div>
   );
 };

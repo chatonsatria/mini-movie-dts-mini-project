@@ -17,17 +17,17 @@ const useGet = (url) => {
   };
 
   async function get() {
-    const base_API_url = "https://api.themoviedb.org/3";
-    const API_Key = "api_key=7319f64ce9b1975009dc5b276c7a021d";
-    const base_Image_url = "https://image.tmdb.org/t/p/original";
     try {
-      let res = await axios.get(`${base_API_url}/${url}?${API_Key}`, {});
+      let res = await axios.get(
+        `${process.env.REACT_APP_TMDB_API_BASE_URL}/${url}?api_key=${process.env.REACT_APP_TMDB_KEY}`,
+        {}
+      );
       console.log(res);
       if (res.status === 200) {
         setData({
           status: true,
           feedback: res.data,
-          baseUrl: base_Image_url,
+          baseUrl: process.env.REACT_APP_TMDB_BASE_IMAGE_URL,
         });
       }
     } catch (error) {

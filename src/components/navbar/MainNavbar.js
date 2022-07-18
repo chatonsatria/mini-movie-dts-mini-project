@@ -11,17 +11,19 @@ import NavLogin from "./navbarMenu/NavLogin";
 import NavLogout from "./navbarMenu/NavLogout";
 // pop up
 import PopUpLogout from "../uiComponents/popups/PopUpLogout";
+
 import { useContext, useState } from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebase";
 import { AuthContext } from "../../store/auth-context";
 import SearchField from "../movies/search/SearchField";
 
+import { Link } from "react-router-dom";
+
 const MainNavbar = () => {
-  const { token, useremail } = useContext(AuthContext);
+  const { token, useremail, logout } = useContext(AuthContext);
   const [wantLogout, setWantLogout] = useState(false);
   const [profileDropDown, setProfileDropdown] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const profile = localStorage.getItem("profile");
 
   const setDropDown = () => {
     setProfileDropdown((prev) => !prev);
@@ -32,16 +34,8 @@ const MainNavbar = () => {
   };
 
   const confirmlogout = async () => {
-    try {
-      await signOut(auth);
-      localStorage.clear();
-      setWantLogout(false);
-      setTimeout(() => {
-        document.location.reload();
-      }, 1000);
-    } catch (error) {
-      console.log(error);
-    }
+    await logout();
+    setWantLogout(false);
   };
 
   return (
@@ -100,7 +94,11 @@ const MainNavbar = () => {
                   />
                 </svg>
                 {/* profile pict */}
-                <img src="" alt="" className="flex w-11 h-11 bg-slate-400" />
+                <img
+                  src={profile}
+                  alt=""
+                  className="flex w-11 h-11 object-cover bg-slate-400"
+                />
                 {/* dropdown menu */}
                 <button onClick={setDropDown}>
                   <svg
@@ -121,15 +119,46 @@ const MainNavbar = () => {
                     />
                   </svg>
                 </button>
-                <section className="absolute mt-56 right-0 text-black">
+                <section className="absolute mt-52 right-0 text-black">
                   {profileDropDown && (
-                    <div className="flex flex-col gap-y-2 w-auto h-auto bg-white rounded-sm p-4">
-                      <p>{useremail}</p>
-                      <p>Profile</p>
-                      <p>Setting</p>
-                      <p>
-                        <NavLogout wantLogout={() => setWantLogout(true)} />
-                      </p>
+                    <div className="flex flex-col gap-y-2 w-[130px] h-auto bg-white rounded-sm p-4">
+                      <Link to={"/profile"}>
+                        <button className="flex">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <p className="ml-3">Profile</p>
+                        </button>
+                      </Link>
+                      <button className="flex">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <p className="ml-3">Setting</p>
+                      </button>
+                      <NavLogout wantLogout={() => setWantLogout(true)} />
                     </div>
                   )}
                 </section>
@@ -187,9 +216,9 @@ const MainNavbar = () => {
                   <div className="flex flex-col items-center gap-y-3 text-black">
                     {/* profile pict */}
                     <img
-                      src=""
+                      src={profile}
                       alt=""
-                      className="flex w-11 h-11 bg-slate-400"
+                      className="flex w-20 object-cover bg-slate-400"
                     />
                     <div className="inline-flex justify-center gap-x-3">
                       <svg
@@ -226,7 +255,9 @@ const MainNavbar = () => {
 
                     <p>{useremail}</p>
                     <div className="inline-flex justify-between w-full">
-                      <button>Profile</button>
+                      <Link to={"/profile"}>
+                        <button>Profile</button>
+                      </Link>
                       <button>Setting</button>
                       <NavLogout wantLogout={() => setWantLogout(true)} />
                     </div>
