@@ -1,6 +1,8 @@
 import CustomLink from "./CustomLink";
 
 const NavNewAndPopular = () => {
-  return <CustomLink to="/new-and-popular">New and Popular</CustomLink>;
+  return (
+    <CustomLink to="/dts-movies/new-and-popular">New and Popular</CustomLink>
+  );
 };
 export default NavNewAndPopular;

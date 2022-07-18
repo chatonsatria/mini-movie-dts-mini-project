@@ -1,6 +1,6 @@
 import CustomLink from "./CustomLink";
 
 const NavMyList = () => {
-  return <CustomLink to="/my-list">My List</CustomLink>;
+  return <CustomLink to="/dts-movies/my-list">My List</CustomLink>;
 };
 export default NavMyList;
