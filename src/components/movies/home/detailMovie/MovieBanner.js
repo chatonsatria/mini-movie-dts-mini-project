@@ -17,7 +17,6 @@ const MovieBanner = () => {
   }, [id]);
 
   if (data.feedback && dataFeedback.genres.length > 0) {
-    console.log("data genre :", dataFeedback.genres);
     return (
       <div className="flex flex-col w-full h-auto gap-y-8">
         <div className="relative flex w-full h-[810px] bg-slate-200">

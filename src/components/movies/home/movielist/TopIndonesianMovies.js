@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "better-react-carousel";
 
 import Number1 from "../../../../assets/rankNumber/Rank - 01.svg";
@@ -11,14 +11,28 @@ import Number7 from "../../../../assets/rankNumber/Rank - 07.svg";
 import Number8 from "../../../../assets/rankNumber/Rank - 08.svg";
 import Number9 from "../../../../assets/rankNumber/Rank - 09.svg";
 import Number10 from "../../../../assets/rankNumber/Rank - 10.svg";
+import useGet from "../../../../hooks/useGet";
 
 const TopIndonesian = () => {
-  return (
-    <div className="flex flex-col gap-y-3">
-      <p className="font-medium text-2xl px-8">Top 10 Indonesian Movies</p>
-      {/* list */}
-      <div className="relative flex w-full">
-        <div className="absolute z-[103] bg-gradient-to-l from-[#141414] opacity-80 w-full h-full"></div>
+  const { data, get } = useGet(`movie/popular`);
+  // data
+  const dataFeedback = data.feedback.results;
+  console.log("data continue", dataFeedback);
+  // base image url for img
+  const baseImgUrl = data.baseUrl;
+
+  const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    get();
+  }, []);
+
+  if (data.feedback && dataFeedback.length > 0) {
+    return (
+      <div className="flex flex-col gap-y-3">
+        <p className="font-medium text-2xl px-8">Top 10 Indonesian Movies</p>
+        {/* list */}
+
         <Carousel
           scrollSnap={true}
           cols={5}
@@ -64,7 +78,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number1} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[9].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -74,7 +88,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number2} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[8].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -84,7 +98,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number3} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[7].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -94,7 +108,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number4} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[6].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -104,7 +118,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number5} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[5].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -114,7 +128,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number6} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[4].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -124,7 +138,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number7} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[3].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -134,7 +148,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number8} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[2].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -144,7 +158,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number9} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[1].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -154,7 +168,7 @@ const TopIndonesian = () => {
             <div className="inline-flex w-full justify-between">
               <img src={Number10} alt="" className="w-[100px]" />
               <img
-                src="https://picsum.photos/800/600?random=1"
+                src={`${baseImgUrl}${dataFeedback[0].poster_path}`}
                 alt=""
                 className="w-[145px] h-[205px] object-cover"
               />
@@ -162,8 +176,10 @@ const TopIndonesian = () => {
           </Carousel.Item>
         </Carousel>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div>Tidak Ada Data</div>;
+  }
 };
 
 export default TopIndonesian;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "better-react-carousel";
 import useGet from "../../../../hooks/useGet";
 import { Link } from "react-router-dom";
@@ -10,6 +10,8 @@ const PopularMovie = () => {
   // base image url for img
   const baseImgUrl = data.baseUrl;
 
+  const [selected, setSelected] = useState(null);
+
   useEffect(() => {
     get();
   }, []);
@@ -18,9 +20,7 @@ const PopularMovie = () => {
     return (
       <div className="flex flex-col gap-y-3">
         <p className="font-medium text-2xl px-8">Popular</p>
-        {/* list */}
-        {/* <div className="relative flex w-full">
-          <div className="absolute z-[103] bg-gradient-to-l from-[#141414] opacity-80 w-full h-full"></div> */}
+
         <Carousel
           scrollSnap={true}
           cols={5}
@@ -64,9 +64,40 @@ const PopularMovie = () => {
           {/* loop here */}
           {dataFeedback.slice(0, 30).map((data) => (
             <Carousel.Item key={data.id}>
-              <Link to={`/dts-movies/home/detail/${data.id}`}>
+              <Link
+                to={`/dts-movies/home/detail/${data.id}`}
+                onMouseEnter={() => setSelected(data.id)}
+                onMouseLeave={() => setSelected(null)}
+              >
                 <div className="relative cursor-pointer">
-                  <div className="absolute top-0 right-0">
+                  {selected === data.id && (
+                    <div
+                      className={
+                        selected === data.id
+                          ? "absolute z-[102] flex w-full h-full bg-black opacity-50"
+                          : ""
+                      }
+                    >
+                      <div className="flex w-full h-full justify-center items-center">
+                        <p className="inline-flex w-auto justify-center h-auto px-4 py-1 border-2 border-white gap-x-3 items-center">
+                          <svg
+                            width="20"
+                            height="22"
+                            viewBox="0 0 20 22"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M0 0.333328L20 11L0 21.6667V0.333328Z"
+                              fill="white"
+                            />
+                          </svg>
+                          <p className="text-xl">Watch</p>
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute z-[101] top-0 right-0">
                     {data.popularity > 10000 && (
                       <svg
                         width="24"
@@ -106,7 +137,11 @@ const PopularMovie = () => {
                   <img
                     src={`${baseImgUrl}${data.poster_path}`}
                     alt=""
-                    className="w-[285px] h-auto aspect-2/3"
+                    className={
+                      selected === data.id
+                        ? "w-[285px] h-auto scale-95 aspect-2/3 object-cover transition-all duration-100"
+                        : "w-[285px] h-auto aspect-2/3 transition-all duration-100"
+                    }
                   />
                 </div>
               </Link>
