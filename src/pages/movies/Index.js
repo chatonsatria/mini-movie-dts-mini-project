@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const IndexPage = () => {
   let navigate = useNavigate();
   useEffect(() => {
+    document.title = "Movies";
     setTimeout(() => {
       navigate("/dts-movies/home");
     }, 5000);
