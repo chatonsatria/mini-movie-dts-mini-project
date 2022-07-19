@@ -1,6 +1,6 @@
 # DTS Mini Project
 
-Pair-27 Chaton Satria Yudhystira and ?? // no response for another pair member
+Pair-27 Chaton Satria Yudhystira 152235865100-777 and ?? // no response from pair
 
 Ketentuan lengkap bisa dilihat di [Mini Project Guidelines](https://docs.google.com/document/d/1DzBNYJMhruoOQK0NOqiW3_UZ1JrA285K53PzHLNf9mc/edit?usp=sharing).
 
