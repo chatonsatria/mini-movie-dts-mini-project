@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
 import Carousel from "better-react-carousel";
+import { useEffect } from "react";
 import useGet from "../../../../hooks/useGet";
-import { Link } from "react-router-dom";
-
-const PopularMovie = () => {
-  const { data, get } = useGet("movie/popular");
+import { Link, useParams } from "react-router-dom";
+const Similar = () => {
+  const { id } = useParams();
+  const { data, get } = useGet(`movie/${id}/similar`);
   // data
   const dataFeedback = data.feedback.results;
   // base image url for img
@@ -17,10 +17,10 @@ const PopularMovie = () => {
   if (data.feedback && dataFeedback.length > 0) {
     return (
       <div className="flex flex-col gap-y-3">
-        <p className="font-medium text-2xl px-8">Popular</p>
+        <p className="font-medium text-2xl px-8">Similar Movies</p>
         {/* list */}
         {/* <div className="relative flex w-full">
-          <div className="absolute z-[103] bg-gradient-to-l from-[#141414] opacity-80 w-full h-full"></div> */}
+            <div className="absolute z-[103] bg-gradient-to-l from-[#141414] opacity-80 w-full h-full"></div> */}
         <Carousel
           scrollSnap={true}
           cols={5}
@@ -120,5 +120,4 @@ const PopularMovie = () => {
     return <div>Tidak Ada Data</div>;
   }
 };
-
-export default PopularMovie;
+export default Similar;

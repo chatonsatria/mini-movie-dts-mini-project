@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import Carousel from "better-react-carousel";
 import useGet from "../../../../hooks/useGet";
 import { setDotInterval } from "./movieCategory/SetDotSeparator";
@@ -61,15 +61,15 @@ const MovieCarousel = () => {
         {/* loop here */}
         {dataFeedback.slice(0, 10).map((data) => (
           <Carousel.Item key={data.id}>
-            <div className="relative w-full md:h-[420px]">
+            <div className="relative w-full h-auto">
               {/* image */}
               <div className="relative inline-flex w-full">
-                <div className="absolute w-full h-full bg-gradient-to-r from-[#040B16] via-slate-900"></div>
-                <div className="flex w-1/2 min-h-full">test</div>
+                <div className="absolute w-full h-full bg-gradient-to-r from-[#040B16] via-slate-900" />
+                <div className="flex w-1/2 min-h-full" />
                 <img
                   src={`${baseImgUrl}${data.poster_path}`}
                   alt=""
-                  className="w-1/2 md:h-[420px] rounded-l-3xl object-cover right-0"
+                  className="w-1/2 h-auto rounded-l-3xl object-cover right-0"
                 />
               </div>
               {/* content */}

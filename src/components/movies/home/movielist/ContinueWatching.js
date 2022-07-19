@@ -17,7 +17,7 @@ const ContinueWatching = () => {
           cols={5}
           rows={1}
           gap={5}
-          containerClassName="flex w-full md:h-[160px] px-3"
+          containerClassName="flex w-full h-auto px-3"
           arrowLeft={
             <div className="absolute flex flex-col items-center px-1 justify-center z-[104] cursor-pointer h-full left-8 rounded-l-sm bg-slate-800 bg-opacity-80">
               <svg
@@ -57,77 +57,77 @@ const ContinueWatching = () => {
             <img
               src="https://picsum.photos/800/600?random=1"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=2"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src="https://picsum.photos/800/600?random=3"
               alt=""
-              className="w-[285px] md:h-[160px] object-cover"
+              className="w-[285px] h-auto object-cover"
             />
           </Carousel.Item>
         </Carousel>

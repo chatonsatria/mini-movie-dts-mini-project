@@ -1,5 +1,11 @@
+import WatchMovie from "../../../components/movies/home/watchedMovie/WatchMovie";
+
 const MoviesPlaying = () => {
-  return <div>MoviesPlaying</div>;
+  return (
+    <div>
+      <WatchMovie />
+    </div>
+  );
 };
 
 export default MoviesPlaying;

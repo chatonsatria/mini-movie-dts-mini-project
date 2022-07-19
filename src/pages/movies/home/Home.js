@@ -11,7 +11,7 @@ import { AuthContext } from "../../../store/auth-context";
 const Home = () => {
   const { token } = useContext(AuthContext);
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-y-10">
       <MovieCarousel />
       <PopularMovie />
       {token && <ContinueWatching />}
