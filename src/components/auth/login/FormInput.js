@@ -105,7 +105,7 @@ const FormInput = (props) => {
         <div className="mt-2 text-right">
           {props.isNotValid && (
             <p className="text-[#CB3A31] w-full h-[10px] text-xs font-normal">
-              Inavild Password or Email.
+              {props.errorM ?? "Inavild Password or Email."}
             </p>
           )}
           {!props.isNotValid && <p className="w-full h-[10px]"></p>}

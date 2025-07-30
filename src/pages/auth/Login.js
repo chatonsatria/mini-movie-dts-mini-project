@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { setLogin } = useContext(AuthContext);
   const [isFailed, setIsFailed] = useState(false);
+  const [errorM, setErrorM] = useState(false);
 
   const authDataHandler = (token, useremail) => {
     setLogin(token, useremail);
@@ -27,6 +28,7 @@ const Login = () => {
       console.log(user);
       authDataHandler(user.accessToken, user.email);
     } catch (error) {
+      setErrorM(error.message);
       setIsFailed(true);
     }
   };
@@ -70,6 +72,7 @@ const Login = () => {
           <LoginFormInput
             submit={(email, password) => handleSubmit(email, password)}
             isNotValid={isFailed}
+            errorM={errorM}
             changeValue={() => setIsFailed(false)}
           />
         </div>

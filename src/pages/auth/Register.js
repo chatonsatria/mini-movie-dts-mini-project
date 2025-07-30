@@ -11,6 +11,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { setLogin } = useContext(AuthContext);
   const [isFailed, setIsFailed] = useState(false);
+  const [errorM, setErrorM] = useState();
 
   const authDataHandler = (token, useremail) => {
     setLogin(token, useremail);
@@ -33,6 +34,7 @@ const Register = () => {
       );
       authDataHandler(user.accessToken, user.email);
     } catch (error) {
+      setErrorM(error.message);
       setIsFailed(true);
     }
   };
@@ -76,6 +78,7 @@ const Register = () => {
           <RegisterFormInput
             submit={(email, password) => handleSubmit(email, password)}
             isNotValid={isFailed}
+            errorM={errorM}
             changeValue={() => setIsFailed(false)}
           />
         </div>

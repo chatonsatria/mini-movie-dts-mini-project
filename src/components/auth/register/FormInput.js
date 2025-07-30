@@ -107,7 +107,7 @@ const FormInput = (props) => {
         <div className="mt-2 text-right">
           {props.isNotValid && (
             <p className="text-[#CB3A31] w-full h-[10px] text-xs font-normal">
-              Email already taken
+              {props.errorM ?? "Email already taken"}
             </p>
           )}
           {!props.isNotValid && <p className="w-full h-[10px]"></p>}
